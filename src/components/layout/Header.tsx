@@ -50,11 +50,14 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="bg-orange text-white p-2 rounded-lg font-bold text-xl">
-              E
+          <Link to="/" className="flex items-center space-x-3">
+            <div className="bg-gradient-to-br from-orange to-orange-dark text-white p-3 rounded-xl font-bold text-2xl shadow-lg">
+              N
             </div>
-            <span className="text-2xl font-bold text-gray-800">ShopMart</span>
+            <div>
+              <span className="text-3xl font-bold text-gray-800">ShopMart</span>
+              <div className="text-xs text-orange font-medium">Your Shopping Partner</div>
+            </div>
           </Link>
 
           {/* Search Bar */}
@@ -207,7 +210,7 @@ const Header = () => {
           <div className="container mx-auto px-4 py-4 space-y-4">
             <div className="space-y-2">
               <h3 className="font-semibold text-gray-800">Categories</h3>
-              {categories.slice(0, 6).map((category) => (
+              {categories.slice(0, 8).map((category) => (
                 <Link
                   key={category}
                   to={`/products?category=${encodeURIComponent(category)}`}
