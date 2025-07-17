@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Star, ShoppingCart, Heart, Eye } from 'lucide-react';
@@ -13,9 +12,10 @@ import { toast } from '@/hooks/use-toast';
 interface ProductCardProps {
   product: Product;
   className?: string;
+  style?: React.CSSProperties;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, className = '' }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, className = '', style }) => {
   const { dispatch } = useCart();
 
   const handleAddToCart = (e: React.MouseEvent) => {
@@ -42,7 +42,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className = '' }) =>
     : 0;
 
   return (
-    <Card className={`product-card group overflow-hidden ${className}`}>
+    <Card className={`product-card group overflow-hidden ${className}`} style={style}>
       <div className="relative">
         <Link to={`/product/${product.id}`}>
           <img
