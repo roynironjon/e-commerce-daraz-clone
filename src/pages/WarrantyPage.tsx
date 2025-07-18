@@ -39,7 +39,7 @@ const WarrantyPage = () => {
   return (
     <div className="min-h-screen">
       {/* 1. Hero Section */}
-      <section className="bg-gradient-to-br from-purple-600 to-purple-800 text-white py-20">
+      <section className="bg-orange text-white py-20">
         <div className="max-w-[1160px] mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6">Product Warranty</h1>
           <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
@@ -292,7 +292,7 @@ const WarrantyPage = () => {
             <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100">
               View Extended Warranties
             </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-purple-600">
+            <Button variant="outline" size="lg" className="bg-orange border-white text-white hover:bg-white hover:text-purple-600">
               File Warranty Claim
             </Button>
           </div>

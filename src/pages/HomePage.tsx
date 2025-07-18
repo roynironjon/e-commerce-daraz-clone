@@ -274,7 +274,7 @@ const HomePage = () => {
 
       {/* 5. Flash Deals Section */}
       {flashDeals.length > 0 && (
-        <section className="py-16 bg-gradient-to-r from-red/5 to-orange/5">
+        <section className="py-16 bg-gray-50">
           <div className="max-w-[1160px] mx-auto px-4">
             <div className="flex items-center justify-between mb-8">
               <div>
@@ -288,7 +288,7 @@ const HomePage = () => {
             </div>
             
             {/* Top 4 Flash Deals in 4 columns */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+            {/* <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
               {flashDealsTop4.map((product, index) => (
                 <ProductCard
                   key={product.id}
@@ -297,11 +297,11 @@ const HomePage = () => {
                   style={{ animationDelay: `${index * 0.1}s` }}
                 />
               ))}
-            </div>
+            </div> */}
 
             {/* Next 8 Flash Deals in 3 columns */}
             {flashDealsNext8.length > 0 && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
                 {flashDealsNext8.map((product, index) => (
                   <ProductCard
                     key={product.id}
@@ -479,7 +479,7 @@ const HomePage = () => {
       </section>
 
       {/* 9. Why Choose Us */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-white">
         <div className="max-w-[1160px] mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Why Choose N ShopMart?</h2>
@@ -530,7 +530,7 @@ const HomePage = () => {
                 Shop Now & Save
               </Button>
             </Link>
-            <Button variant="outline" size="lg" className=" bg-gray-500 border-white text-white hover:bg-white hover:text-blue px-8">
+            <Button variant="outline" size="lg" className=" bg-orange-500 border-white text-white hover:bg-white hover:text-blue px-8">
               Learn More
             </Button>
           </div>
@@ -610,7 +610,7 @@ const HomePage = () => {
                 placeholder="Enter your email"
                 className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
               />
-              <Button className="bg-white text-orange hover:bg-gray-100 px-6">
+              <Button className="bg-gray-900 py-6 text-orange hover:bg-gray-100 px-6">
                 Subscribe
               </Button>
             </div>
@@ -639,7 +639,7 @@ const HomePage = () => {
                   <Download className="mr-2 h-5 w-5" />
                   Download App
                 </Button>
-                <Button variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900">
+                <Button variant="outline" className="bg-orange border-white text-white hover:bg-white hover:text-gray-900">
                   <Clock className="mr-2 h-5 w-5" />
                   Learn More
                 </Button>

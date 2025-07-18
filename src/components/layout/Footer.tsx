@@ -22,7 +22,7 @@ const Footer = () => {
                 placeholder="Enter your email"
                 className="rounded-r-none bg-white text-gray-900 min-w-[300px]"
               />
-              <Button variant="secondary" className="rounded-l-none bg-white text-orange hover:bg-gray-100">
+              <Button variant="secondary" className="rounded-l-none bg-gray-900 text-orange hover:bg-gray-100">
                 Subscribe
               </Button>
             </div>
@@ -94,21 +94,21 @@ const Footer = () => {
                 <Phone className="h-5 w-5 text-orange" />
                 <div>
                   <p className="text-gray-400">Customer Service</p>
-                  <p className="text-white font-medium">+1-234-567-8900</p>
+                  <p className="text-white font-medium">+8801717391532</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-orange" />
                 <div>
                   <p className="text-gray-400">Email Support</p>
-                  <p className="text-white font-medium">support@shopmart.com</p>
+                  <p className="text-white font-medium">nironjonroy532@gmail.com</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-orange" />
                 <div>
                   <p className="text-gray-400">Address</p>
-                  <p className="text-white font-medium">123 Commerce St, NYC</p>
+                  <p className="text-white font-medium">Mirpur-2, Dhaka-1216</p>
                 </div>
               </div>
             </div>
@@ -121,7 +121,7 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-400">
-              <p>&copy; 2024 ShopMart. All rights reserved.</p>
+              <p>&copy; 2024 ShopMart. All rights reserved. ! Developed By Roy</p>
               <div className="flex space-x-4">
                 <Link to="/privacy" className="hover:text-orange transition-colors">Privacy Policy</Link>
                 <Link to="/terms" className="hover:text-orange transition-colors">Terms of Service</Link>

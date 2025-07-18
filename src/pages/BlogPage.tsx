@@ -69,7 +69,7 @@ const BlogPage = () => {
   return (
     <div className="min-h-screen">
       {/* 1. Hero Section */}
-      <section className="bg-gradient-to-br from-green to-green-dark text-white py-20">
+      <section className="bg-orange text-white py-20">
         <div className="max-w-[1160px] mx-auto px-4">
           <div className="text-center mb-12">
             <h1 className="text-5xl font-bold mb-6">N ShopMart Blog</h1>
@@ -335,17 +335,17 @@ const BlogPage = () => {
       </section>
 
       {/* 9. Archive & Resources */}
-      <section className="py-16 bg-gradient-to-r from-green to-green-dark text-white">
+      <section className="py-16 bg-gray-50 text-black">
         <div className="max-w-[1160px] mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Explore Our Archive</h2>
           <p className="text-xl opacity-90 mb-8">
             Browse through hundreds of articles and resources
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-green hover:bg-gray-100">
+            <Button size="lg" className="bg-orange text-green hover:bg-bleack-100 hover:text-white">
               Browse All Articles
             </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-green">
+            <Button variant="outline" size="lg" className="border-white bg-black text-white hover:bg-orange hover:text-white">
               Popular This Month
             </Button>
           </div>

@@ -72,7 +72,7 @@ const PressPage = () => {
   return (
     <div className="min-h-screen">
       {/* 1. Hero Section */}
-      <section className="bg-gradient-to-br from-purple-600 to-purple-800 text-white py-20">
+      <section className="bg-orange text-white py-20">
         <div className="max-w-[1160px] mx-auto px-4">
           <div className="text-center mb-12">
             <h1 className="text-5xl font-bold mb-6">Press & Media</h1>

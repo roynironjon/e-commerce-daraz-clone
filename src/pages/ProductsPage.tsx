@@ -100,14 +100,28 @@ const ProductsPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+        <section
+        className="relative w-full h-[400px] bg-cover bg-center"
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1607083204532-bcbb4b73dd2a?auto=format&fit=crop&w=1470&q=80')`
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-orange to-orange-dark mix-blend-multiply"></div>
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">{getPageTitle()}</h1>
+          <p className="text-lg md:text-xl max-w-2xl drop-shadow-md">
+            {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''} found
+          </p>
+        </div>
+      </section>
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold mb-2">{getPageTitle()}</h1>
-            <p className="text-gray-600">
+            <h1 className="text-3xl font-bold mb-2">All Categorise</h1>
+            {/* <p className="text-gray-600">
               {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''} found
-            </p>
+            </p> */}
           </div>
           
           <div className="flex items-center space-x-4 mt-4 md:mt-0">

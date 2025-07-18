@@ -39,17 +39,17 @@ const AffiliateProgram = () => {
   return (
     <div className="min-h-screen">
       {/* 1. Hero Section */}
-      <section className="bg-gradient-to-br from-green to-green-dark text-white py-20">
+      <section className="bg-orange text-white py-20">
         <div className="max-w-[1160px] mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6">Join Our Affiliate Program</h1>
           <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
             Partner with N ShopMart and earn generous commissions by promoting 
             our products to your audience.
           </p>
-          <Button size="lg" className="bg-white text-green hover:bg-gray-100 mr-4">
+          <Button size="lg" className="bg-black text-green hover:bg-gray-100 mr-4 hover:text-black">
             Join Now - It's Free
           </Button>
-          <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-green">
+          <Button variant="outline" size="lg" className="border-white text-black hover:bg-black hover:text-white">
             Learn More
           </Button>
         </div>
@@ -302,16 +302,16 @@ const AffiliateProgram = () => {
       </section>
 
       {/* 9. Join Now CTA */}
-      <section className="py-16 bg-gradient-to-r from-green to-green-dark text-white">
+      <section className="py-16 bg-gray-50 text-black">
         <div className="max-w-[1160px] mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Start Earning?</h2>
           <p className="text-xl opacity-90 mb-8">
             Join thousands of successful affiliates earning with N ShopMart
           </p>
-          <Button size="lg" className="bg-white text-green hover:bg-gray-100 mr-4">
+          <Button size="lg" className="bg-orange text-green hover:bg-black-100 mr-4 hover:text-white">
             Apply Now - Free
           </Button>
-          <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-green">
+          <Button variant="outline" size="lg" className="border-white bg-black text-white hover:bg-orange hover:text-green">
             Contact Us
           </Button>
           <div className="mt-8 text-sm opacity-80">

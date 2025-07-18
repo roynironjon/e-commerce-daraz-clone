@@ -87,7 +87,7 @@ const CareersPage = () => {
   return (
     <div className="min-h-screen">
       {/* 1. Hero Section */}
-      <section className="bg-gradient-to-br from-blue to-blue-dark text-white py-20">
+      <section className="bg-orange text-white py-20">
         <div className="max-w-[1160px] mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6">Join Our Amazing Team</h1>
           <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
@@ -347,10 +347,10 @@ const CareersPage = () => {
             Take the next step in your career and be part of something amazing.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-blue hover:bg-gray-100">
+            <Button size="lg" className="bg-white text-blue hover:bg-orange hover:text-white">
               Browse Open Positions
             </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-blue">
+            <Button variant="outline" size="lg" className="bg-orange border-white text-white hover:bg-white hover:text-black">
               Learn More About Us
             </Button>
           </div>

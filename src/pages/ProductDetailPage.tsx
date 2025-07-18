@@ -64,6 +64,30 @@ const ProductDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <section
+        className="relative w-full h-[300px] bg-cover bg-center"
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1607083204532-bcbb4b73dd2a?auto=format&fit=crop&w=1470&q=80')`
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-orange to-orange-dark mix-blend-multiply"></div>
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">Product</h1>
+          <p className="text-lg md:text-xl max-w-2xl drop-shadow-md">
+            <nav className="mb-8 text-sm">
+              <Link to="/" className="text-white hover:text-orange">Home</Link>
+              <span className="mx-2 text-white">/</span>
+              <Link to="/products" className="text-white hover:text-orange">Products</Link>
+              <span className="mx-2 text-white">/</span>
+              <Link to={`/products?category=${product.category}`} className="text-white hover:text-orange">
+                {product.category}
+              </Link>
+              <span className="mx-2 text-white">/</span>
+              <span className="text-white">{product.name}</span>
+            </nav>
+          </p>
+        </div>
+      </section>
       <div className="container mx-auto px-4 py-8">
         {/* Breadcrumb */}
         <nav className="mb-8 text-sm">

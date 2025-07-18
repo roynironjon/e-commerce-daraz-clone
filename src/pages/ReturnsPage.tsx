@@ -251,13 +251,13 @@ const ReturnsPage = () => {
       </section>
 
       {/* 9. CTA Section */}
-      <section className="py-16 bg-orange text-white">
+      <section className="py-16 bg-gray-50 text-black">
         <div className="max-w-[1160px] mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Start Your Return?</h2>
           <p className="text-xl opacity-90 mb-8">
             It only takes a few minutes to initiate your return online
           </p>
-          <Button size="lg" className="bg-white text-orange hover:bg-gray-100">
+          <Button size="lg" className="bg-orange text-black hover:bg-black hover:text-white">
             Start Return Process
           </Button>
         </div>

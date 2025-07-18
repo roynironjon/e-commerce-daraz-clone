@@ -48,6 +48,17 @@ const WishlistPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+           <section
+              className="relative w-full h-[300px] bg-cover bg-center"
+              style={{
+                backgroundImage: `url('https://images.unsplash.com/photo-1607083204532-bcbb4b73dd2a?auto=format&fit=crop&w=1470&q=80')`
+              }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-orange to-orange-dark mix-blend-multiply"></div>
+              <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
+                <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">My Wishlist</h1>
+              </div>
+            </section>
       <div className="max-w-[1160px] mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">

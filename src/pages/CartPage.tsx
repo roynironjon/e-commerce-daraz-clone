@@ -60,12 +60,23 @@ const CartPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+               <section
+              className="relative w-full h-[300px] bg-cover bg-center"
+              style={{
+                backgroundImage: `url('https://images.unsplash.com/photo-1607083204532-bcbb4b73dd2a?auto=format&fit=crop&w=1470&q=80')`
+              }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-orange to-orange-dark mix-blend-multiply"></div>
+              <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
+                <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">My Cart</h1>
+              </div>
+            </section>
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center space-x-4">
             <Link to="/products">
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" className='bg-orange text-white hover:bg-black hover:text-white'>
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Continue Shopping
               </Button>

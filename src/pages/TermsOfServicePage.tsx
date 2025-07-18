@@ -405,7 +405,7 @@ const TermsOfServicePage = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 bg-orange text-white">
+      <section className="py-16 bg-gray-500 text-white">
         <div className="container mx-auto px-4 max-w-[1160px]">
           <div className="text-center mb-12">
             <Mail className="h-16 w-16 mx-auto mb-6" />

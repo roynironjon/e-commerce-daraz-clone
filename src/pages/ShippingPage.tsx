@@ -48,7 +48,7 @@ const ShippingPage = () => {
   return (
     <div className="min-h-screen">
       {/* 1. Hero Section */}
-      <section className="bg-gradient-to-br from-green to-green-dark text-white py-20">
+      <section className="bg-orange text-white py-20">
         <div className="max-w-[1160px] mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6">Shipping Information</h1>
           <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
@@ -58,7 +58,7 @@ const ShippingPage = () => {
       </section>
 
       {/* 2. Shipping Options */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-[1160px] mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Shipping Options</h2>
@@ -269,7 +269,7 @@ const ShippingPage = () => {
                 </div>
               </div>
               <div className="text-center mt-6">
-                <Button className="bg-blue hover:bg-blue-dark">
+                <Button className="bg-orange hover:bg-blue-dark">
                   Track My Order
                 </Button>
               </div>
@@ -279,17 +279,17 @@ const ShippingPage = () => {
       </section>
 
       {/* 9. Contact Shipping Support */}
-      <section className="py-16 bg-green text-white">
+      <section className="py-16 bg-green-500 text-white">
         <div className="max-w-[1160px] mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Questions About Shipping?</h2>
           <p className="text-xl opacity-90 mb-8">
             Our shipping specialists are here to help with any questions
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-green hover:bg-gray-100">
+            <Button size="lg" className="bg-orange text-green hover:bg-gray-100 hover:text-black">
               Contact Shipping Support
             </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-green">
+            <Button variant="outline" size="lg" className="bg-orange border-white text-white hover:bg-white hover:text-black">
               View Shipping FAQ
             </Button>
           </div>

@@ -128,7 +128,7 @@ const FAQPage = () => {
   return (
     <div className="min-h-screen">
       {/* 1. Hero Section */}
-      <section className="bg-gradient-to-br from-indigo-600 to-indigo-800 text-white py-20">
+      <section className="bg-orange text-white py-20">
         <div className="max-w-[1160px] mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6">Frequently Asked Questions</h1>
           <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
@@ -378,7 +378,7 @@ const FAQPage = () => {
             <Button size="lg" className="bg-white text-indigo-600 hover:bg-gray-100">
               Contact Support
             </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-indigo-600">
+            <Button variant="outline" size="lg" className="bg-orange border-white text-white hover:bg-white hover:text-indigo-600">
               Browse Help Center
             </Button>
           </div>
