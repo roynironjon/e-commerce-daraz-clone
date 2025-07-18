@@ -1,19 +1,24 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Star, ShoppingBag, Users, Truck, Shield, RotateCcw, Award, Smartphone, Download } from 'lucide-react';
+import { ArrowRight, Star, ShoppingBag, Users, Truck, Shield, RotateCcw, Award, Smartphone, Download, Percent, Gift, Clock, TrendingUp, CheckCircle, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import CountdownTimer from '@/components/ui/countdown-timer';
 import ProductCard from '@/components/product/ProductCard';
-import { products } from '@/data/products';
+import { products, categories, categoryImages } from '@/data/products';
 
 const HomePage = () => {
   // Product filtering logic
   const featuredProducts = products.filter(product => product.isFeatured).slice(0, 8);
   const bestSellers = products.filter(product => product.isBestSeller).slice(0, 8);
-  const flashDeals = products.filter(product => product.isFlashDeal).slice(0, 6);
-  const categories = Array.from(new Set(products.map(product => product.category))).slice(0, 16);
+  const flashDeals = products.filter(product => product.isFlashDeal);
+  const flashDealsTop4 = flashDeals.slice(0, 4);
+  const flashDealsNext8 = flashDeals.slice(4, 12);
+  
+  // Create discount products (products with originalPrice)
+  const discountProducts = products.filter(product => product.originalPrice && product.originalPrice > product.price).slice(0, 8);
 
   const brands = [
     { name: 'Apple', logo: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=100&h=60&fit=crop' },
@@ -22,6 +27,8 @@ const HomePage = () => {
     { name: 'Adidas', logo: 'https://images.unsplash.com/photo-1556906781-9a412961c28c?w=100&h=60&fit=crop' },
     { name: 'Sony', logo: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&h=60&fit=crop' },
     { name: 'LG', logo: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=100&h=60&fit=crop' },
+    { name: 'Dell', logo: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=100&h=60&fit=crop' },
+    { name: 'HP', logo: 'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=100&h=60&fit=crop' },
   ];
 
   const testimonials = [
@@ -45,9 +52,36 @@ const HomePage = () => {
     }
   ];
 
+  const features = [
+    {
+      icon: Truck,
+      title: "Free Shipping",
+      description: "Free delivery on orders over $50 worldwide",
+      color: "text-green-600"
+    },
+    {
+      icon: Shield,
+      title: "Secure Payment",
+      description: "100% secure payment with SSL encryption",
+      color: "text-blue-600"
+    },
+    {
+      icon: RotateCcw,
+      title: "Easy Returns",
+      description: "30-day hassle-free return policy",
+      color: "text-orange-600"
+    },
+    {
+      icon: Award,
+      title: "Quality Guarantee",
+      description: "Premium quality products guaranteed",
+      color: "text-purple-600"
+    }
+  ];
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section - Enhanced with solid background */}
+      {/* 1. Hero Section */}
       <section className="relative bg-gradient-to-br from-orange via-orange-dark to-red text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative max-w-[1160px] mx-auto px-4 py-20">
@@ -73,9 +107,8 @@ const HomePage = () => {
                 </Link>
                 <Link to="/flash-deals">
                   <Button 
-                    variant="outline" 
                     size="lg" 
-                    className="border-white text-white hover:bg-white hover:text-orange px-8 py-4 text-lg backdrop-blur-sm"
+                    className="bg-yellow-400 text-black hover:bg-yellow-300 px-8 py-4 text-lg font-semibold"
                   >
                     Flash Deals
                   </Button>
@@ -116,50 +149,31 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Trust Indicators */}
+      {/* 2. Trust Indicators */}
       <section className="py-12 bg-white border-b">
         <div className="max-w-[1160px] mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="bg-green/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
-                <Truck className="h-8 w-8 text-green" />
+            {features.map((feature, index) => (
+              <div key={index} className="text-center">
+                <div className={`bg-gray-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3`}>
+                  <feature.icon className={`h-8 w-8 ${feature.color}`} />
+                </div>
+                <h3 className="font-semibold mb-1">{feature.title}</h3>
+                <p className="text-sm text-gray-600">{feature.description}</p>
               </div>
-              <h3 className="font-semibold mb-1">Free Delivery</h3>
-              <p className="text-sm text-gray-600">On orders over $50</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-blue/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
-                <Shield className="h-8 w-8 text-blue" />
-              </div>
-              <h3 className="font-semibold mb-1">Secure Payment</h3>
-              <p className="text-sm text-gray-600">100% protected</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-orange/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
-                <RotateCcw className="h-8 w-8 text-orange" />
-              </div>
-              <h3 className="font-semibold mb-1">Easy Returns</h3>
-              <p className="text-sm text-gray-600">30-day return policy</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-purple-500/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
-                <Award className="h-8 w-8 text-purple-600" />
-              </div>
-              <h3 className="font-semibold mb-1">Quality Guarantee</h3>
-              <p className="text-sm text-gray-600">Premium products</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Brand Showcase */}
+      {/* 3. Brand Showcase */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-[1160px] mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Trusted by Top Brands</h2>
             <p className="text-gray-600">We partner with the world's leading brands</p>
           </div>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-8 items-center">
+          <div className="grid grid-cols-4 md:grid-cols-8 gap-8 items-center">
             {brands.map((brand, index) => (
               <div key={index} className="text-center grayscale hover:grayscale-0 transition-all duration-300">
                 <img
@@ -173,7 +187,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Categories Section */}
+      {/* 4. Categories Section */}
       <section className="py-16 bg-white">
         <div className="max-w-[1160px] mx-auto px-4">
           <div className="text-center mb-12">
@@ -181,26 +195,33 @@ const HomePage = () => {
             <p className="text-gray-600">Discover products across all categories</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6">
-            {categories.map((category, index) => (
+            {categories.slice(0, 16).map((category, index) => (
               <Link
                 key={category}
                 to={`/products?category=${encodeURIComponent(category)}`}
                 className="group text-center animate-fade-in hover-lift"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="bg-gradient-to-br from-orange/10 to-orange/5 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:from-orange/20 group-hover:to-orange/10 transition-all duration-300">
-                  <ShoppingBag className="h-8 w-8 text-orange" />
+                <div className="relative overflow-hidden rounded-2xl mb-3 group-hover:shadow-lg transition-all duration-300">
+                  <img
+                    src={categoryImages[category] || 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=200&h=200&fit=crop'}
+                    alt={category}
+                    className="w-full h-24 object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                  <div className="absolute bottom-1 left-1 right-1">
+                    <h3 className="font-medium text-xs text-white text-center truncate">
+                      {category}
+                    </h3>
+                  </div>
                 </div>
-                <h3 className="font-medium text-sm group-hover:text-orange transition-colors">
-                  {category}
-                </h3>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Flash Deals Section */}
+      {/* 5. Flash Deals Section */}
       {flashDeals.length > 0 && (
         <section className="py-16 bg-gradient-to-r from-red/5 to-orange/5">
           <div className="max-w-[1160px] mx-auto px-4">
@@ -214,8 +235,10 @@ const HomePage = () => {
                 <CountdownTimer targetDate={new Date(Date.now() + 24 * 60 * 60 * 1000)} />
               </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-              {flashDeals.map((product, index) => (
+            
+            {/* Top 4 Flash Deals in 4 columns */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+              {flashDealsTop4.map((product, index) => (
                 <ProductCard
                   key={product.id}
                   product={product}
@@ -224,7 +247,22 @@ const HomePage = () => {
                 />
               ))}
             </div>
-            <div className="text-center mt-8">
+
+            {/* Next 8 Flash Deals in 3 columns */}
+            {flashDealsNext8.length > 0 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+                {flashDealsNext8.map((product, index) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    className="animate-fade-in"
+                    style={{ animationDelay: `${(index + 4) * 0.1}s` }}
+                  />
+                ))}
+              </div>
+            )}
+
+            <div className="text-center">
               <Link to="/flash-deals">
                 <Button variant="outline" className="border-red text-red hover:bg-red hover:text-white">
                   View All Flash Deals
@@ -236,9 +274,34 @@ const HomePage = () => {
         </section>
       )}
 
-      {/* Featured Products */}
-      {featuredProducts.length > 0 && (
+      {/* 6. Discount Products Section */}
+      {discountProducts.length > 0 && (
         <section className="py-16 bg-white">
+          <div className="max-w-[1160px] mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4 flex items-center justify-center">
+                <Percent className="mr-2 h-8 w-8 text-orange" />
+                Discount Products
+              </h2>
+              <p className="text-gray-600">Save big on these amazing deals</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {discountProducts.map((product, index) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  className="animate-fade-in"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 7. Featured Products */}
+      {featuredProducts.length > 0 && (
+        <section className="py-16 bg-gray-50">
           <div className="max-w-[1160px] mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">Featured Products</h2>
@@ -266,12 +329,15 @@ const HomePage = () => {
         </section>
       )}
 
-      {/* Best Sellers */}
+      {/* 8. Best Sellers */}
       {bestSellers.length > 0 && (
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-white">
           <div className="max-w-[1160px] mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Best Sellers</h2>
+              <h2 className="text-3xl font-bold mb-4 flex items-center justify-center">
+                <TrendingUp className="mr-2 h-8 w-8 text-green-600" />
+                Best Sellers
+              </h2>
               <p className="text-gray-600">Most popular products loved by customers</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -296,7 +362,46 @@ const HomePage = () => {
         </section>
       )}
 
-      {/* Special Offer Banner */}
+      {/* 9. Why Choose Us */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-[1160px] mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Why Choose N ShopMart?</h2>
+            <p className="text-gray-600">Experience the difference with our premium service</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="text-center p-8 hover-glow">
+              <CardContent>
+                <div className="bg-blue/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="h-8 w-8 text-blue" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Quality Assurance</h3>
+                <p className="text-gray-600">Every product is carefully inspected to ensure premium quality and customer satisfaction.</p>
+              </CardContent>
+            </Card>
+            <Card className="text-center p-8 hover-glow">
+              <CardContent>
+                <div className="bg-green/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Heart className="h-8 w-8 text-green" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Customer First</h3>
+                <p className="text-gray-600">Your satisfaction is our priority. We go above and beyond to exceed expectations.</p>
+              </CardContent>
+            </Card>
+            <Card className="text-center p-8 hover-glow">
+              <CardContent>
+                <div className="bg-purple-500/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Gift className="h-8 w-8 text-purple-600" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">Exclusive Deals</h3>
+                <p className="text-gray-600">Get access to exclusive discounts and special offers available only to our customers.</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* 10. Special Offer Banner */}
       <section className="py-16 bg-gradient-to-r from-blue to-blue-dark text-white">
         <div className="max-w-[1160px] mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-4">🎉 Special Weekend Offer!</h2>
@@ -316,7 +421,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* 11. Customer Reviews */}
       <section className="py-16 bg-white">
         <div className="max-w-[1160px] mx-auto px-4">
           <div className="text-center mb-12">
@@ -351,7 +456,31 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Newsletter Subscription */}
+      {/* 12. Statistics Section */}
+      <section className="py-16 bg-gray-900 text-white">
+        <div className="max-w-[1160px] mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-4xl font-bold text-orange mb-2">10M+</div>
+              <p className="text-gray-300">Happy Customers</p>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-green mb-2">50K+</div>
+              <p className="text-gray-300">Products Available</p>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-blue mb-2">100+</div>
+              <p className="text-gray-300">Countries Served</p>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-yellow-400 mb-2">24/7</div>
+              <p className="text-gray-300">Customer Support</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 13. Newsletter Subscription */}
       <section className="py-16 bg-gradient-to-r from-orange to-orange-dark text-white">
         <div className="max-w-[1160px] mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Stay Updated with Latest Deals</h2>
@@ -376,12 +505,15 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Mobile App Promotion */}
+      {/* 14. Mobile App Promotion */}
       <section className="py-16 bg-gray-900 text-white">
         <div className="max-w-[1160px] mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold mb-6">Shop on the Go!</h2>
+              <h2 className="text-4xl font-bold mb-6 flex items-center">
+                <Smartphone className="mr-3 h-10 w-10 text-orange" />
+                Shop on the Go!
+              </h2>
               <p className="text-xl opacity-90 mb-8">
                 Download our mobile app for exclusive deals, faster checkout, 
                 and seamless shopping experience anywhere, anytime.
@@ -392,7 +524,7 @@ const HomePage = () => {
                   Download App
                 </Button>
                 <Button variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900">
-                  <Smartphone className="mr-2 h-5 w-5" />
+                  <Clock className="mr-2 h-5 w-5" />
                   Learn More
                 </Button>
               </div>
@@ -403,6 +535,46 @@ const HomePage = () => {
                 alt="Mobile App"
                 className="w-full max-w-sm mx-auto rounded-2xl shadow-2xl"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 15. Security & Trust */}
+      <section className="py-16 bg-white">
+        <div className="max-w-[1160px] mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Shop with Confidence</h2>
+            <p className="text-gray-600">Your security and privacy are our top priorities</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="bg-green/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Shield className="h-8 w-8 text-green" />
+              </div>
+              <h3 className="font-semibold mb-2">SSL Encrypted</h3>
+              <p className="text-sm text-gray-600">Bank-level security</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blue/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users className="h-8 w-8 text-blue" />
+              </div>
+              <h3 className="font-semibold mb-2">Trusted by Millions</h3>
+              <p className="text-sm text-gray-600">10M+ happy customers</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-orange/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Award className="h-8 w-8 text-orange" />
+              </div>
+              <h3 className="font-semibold mb-2">Award Winning</h3>
+              <p className="text-sm text-gray-600">Best e-commerce 2024</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-purple-500/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="h-8 w-8 text-purple-600" />
+              </div>
+              <h3 className="font-semibold mb-2">Verified Reviews</h3>
+              <p className="text-sm text-gray-600">100% authentic reviews</p>
             </div>
           </div>
         </div>

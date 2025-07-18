@@ -18,6 +18,10 @@ import AuthPage from "@/pages/AuthPage";
 import WishlistPage from "@/pages/WishlistPage";
 import AboutPage from "@/pages/AboutPage";
 import ContactPage from "@/pages/ContactPage";
+import CareersPage from "@/pages/CareersPage";
+import PressPage from "@/pages/PressPage";
+import BlogPage from "@/pages/BlogPage";
+import AffiliateProgram from "@/pages/AffiliateProgram";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -44,6 +48,10 @@ const App = () => (
                     <Route path="/wishlist" element={<WishlistPage />} />
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/careers" element={<CareersPage />} />
+                    <Route path="/press" element={<PressPage />} />
+                    <Route path="/blog" element={<BlogPage />} />
+                    <Route path="/affiliate" element={<AffiliateProgram />} />
                     <Route path="/flash-deals" element={<ProductsPage />} />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
