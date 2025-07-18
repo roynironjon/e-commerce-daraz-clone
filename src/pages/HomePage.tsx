@@ -7,7 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import CountdownTimer from '@/components/ui/countdown-timer';
 import ProductCard from '@/components/product/ProductCard';
-import { products, categories, categoryImages } from '@/data/products';
+import { products, categories, categoryImages, getAllCategoriesWithCounts } from '@/data/products';
 
 const HomePage = () => {
   // Product filtering logic
@@ -19,6 +19,9 @@ const HomePage = () => {
   
   // Create discount products (products with originalPrice)
   const discountProducts = products.filter(product => product.originalPrice && product.originalPrice > product.price).slice(0, 8);
+  
+  // Get all categories with their product counts and products
+  const categoriesWithCounts = getAllCategoriesWithCounts();
 
   const brands = [
     { name: 'Apple', logo: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=100&h=60&fit=crop' },
@@ -540,7 +543,72 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* 15. Security & Trust */}
+      {/* 15. All Categories with Products */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-[1160px] mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">All Categories & Products</h2>
+            <p className="text-gray-600">Explore our complete product catalog across all categories</p>
+          </div>
+          
+          {categoriesWithCounts.map((categoryData, categoryIndex) => (
+            <div key={categoryData.name} className="mb-16">
+              {/* Category Header */}
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center">
+                  <div className="relative">
+                    <img
+                      src={categoryImages[categoryData.name] || 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=80&h=80&fit=crop'}
+                      alt={categoryData.name}
+                      className="w-16 h-16 rounded-full object-cover border-4 border-white shadow-lg"
+                    />
+                    <div className="absolute -top-2 -right-2 bg-orange text-white text-xs font-bold px-2 py-1 rounded-full">
+                      {categoryData.count}
+                    </div>
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-2xl font-bold text-gray-900">{categoryData.name}</h3>
+                    <p className="text-gray-600">{categoryData.count} products available</p>
+                  </div>
+                </div>
+                <Link 
+                  to={`/products?category=${encodeURIComponent(categoryData.name)}`}
+                  className="text-orange hover:text-orange-dark font-semibold flex items-center group"
+                >
+                  View All
+                  <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+
+              {/* Products Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {categoryData.products.slice(0, 8).map((product, productIndex) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    className="animate-fade-in"
+                    style={{ animationDelay: `${productIndex * 0.05}s` }}
+                  />
+                ))}
+              </div>
+
+              {/* Show more products if available */}
+              {categoryData.products.length > 8 && (
+                <div className="text-center mt-6">
+                  <Link to={`/products?category=${encodeURIComponent(categoryData.name)}`}>
+                    <Button variant="outline" className="border-orange text-orange hover:bg-orange hover:text-white">
+                      View All {categoryData.count} {categoryData.name} Products
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 16. Security & Trust */}
       <section className="py-16 bg-white">
         <div className="max-w-[1160px] mx-auto px-4">
           <div className="text-center mb-12">

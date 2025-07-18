@@ -91,9 +91,10 @@ const generateProducts = () => {
     // ... (generate 58 more electronics products)
   ];
 
-  // Generate products for each category
+  // Generate products for each category (40-50 products each)
   categories.forEach((category, categoryIndex) => {
-    for (let i = 0; i < 60; i++) {
+    const productCount = Math.floor(Math.random() * 11) + 40; // 40-50 products
+    for (let i = 0; i < productCount; i++) {
       const productId = `${categoryIndex + 1}-${i + 1}`;
       const basePrice = Math.floor(Math.random() * 1500) + 50;
       const discount = Math.random() > 0.6 ? Math.floor(Math.random() * 30) + 10 : 0;
@@ -142,4 +143,16 @@ export const getFlashDeals = () => {
 
 export const getProductById = (id: string) => {
   return products.find(product => product.id === id);
+};
+
+export const getCategoryProductCount = (category: string) => {
+  return products.filter(product => product.category === category).length;
+};
+
+export const getAllCategoriesWithCounts = () => {
+  return categories.map(category => ({
+    name: category,
+    count: getCategoryProductCount(category),
+    products: getProductsByCategory(category)
+  }));
 };
