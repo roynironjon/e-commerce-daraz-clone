@@ -5,6 +5,7 @@ import { Search, ShoppingCart, User, Menu, X, Heart, MapPin, Phone } from 'lucid
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useCart } from '@/contexts/CartContext';
+import { useWishlist } from '@/contexts/WishlistContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { categories } from '@/data/products';
 
@@ -13,6 +14,7 @@ const Header = () => {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const { state: cartState } = useCart();
+  const { state: wishlistState } = useWishlist();
   const { state: authState, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -21,6 +23,7 @@ const Header = () => {
     if (searchTerm.trim()) {
       navigate(`/products?search=${encodeURIComponent(searchTerm)}`);
       setSearchTerm('');
+      setIsMenuOpen(false);
     }
   };
 
@@ -28,7 +31,7 @@ const Header = () => {
     <header className="sticky top-0 z-50 bg-white shadow-md">
       {/* Top Bar */}
       <div className="bg-orange text-white py-2">
-        <div className="container mx-auto px-4 flex justify-between items-center text-sm">
+        <div className="max-w-[1160px] mx-auto px-4 flex justify-between items-center text-sm">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">
               <Phone className="h-3 w-3" />
@@ -40,14 +43,15 @@ const Header = () => {
             </div>
           </div>
           <div className="hidden md:flex items-center space-x-4 text-sm">
-            <Link to="/help" className="hover:text-orange-light transition-colors">Help</Link>
+            <Link to="/about" className="hover:text-orange-light transition-colors">About</Link>
+            <Link to="/contact" className="hover:text-orange-light transition-colors">Contact</Link>
             <Link to="/track-order" className="hover:text-orange-light transition-colors">Track Order</Link>
           </div>
         </div>
       </div>
 
       {/* Main Header */}
-      <div className="container mx-auto px-4 py-4">
+      <div className="max-w-[1160px] mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
@@ -82,10 +86,17 @@ const Header = () => {
           {/* Right Icons */}
           <div className="flex items-center space-x-4">
             {/* Wishlist */}
-            <Button variant="ghost" size="sm" className="hidden md:flex items-center space-x-1">
-              <Heart className="h-5 w-5" />
-              <span className="hidden lg:inline">Wishlist</span>
-            </Button>
+            <Link to="/wishlist">
+              <Button variant="ghost" size="sm" className="hidden md:flex items-center space-x-1 relative">
+                <Heart className="h-5 w-5" />
+                <span className="hidden lg:inline">Wishlist</span>
+                {wishlistState.itemCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {wishlistState.itemCount}
+                  </span>
+                )}
+              </Button>
+            </Link>
 
             {/* Cart */}
             <Link to="/cart">
@@ -154,7 +165,7 @@ const Header = () => {
 
       {/* Navigation Bar */}
       <div className="bg-gray-50 border-t">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1160px] mx-auto px-4">
           <div className="flex items-center space-x-8 py-3">
             {/* Categories Dropdown */}
             <div 
@@ -196,8 +207,11 @@ const Header = () => {
               <Link to="/products?bestseller=true" className="text-sm font-medium text-gray-700 hover:text-orange transition-colors">
                 Best Sellers
               </Link>
-              <Link to="/deals" className="text-sm font-medium text-gray-700 hover:text-orange transition-colors">
-                Today's Deals
+              <Link to="/about" className="text-sm font-medium text-gray-700 hover:text-orange transition-colors">
+                About
+              </Link>
+              <Link to="/contact" className="text-sm font-medium text-gray-700 hover:text-orange transition-colors">
+                Contact
               </Link>
             </nav>
           </div>
@@ -207,7 +221,7 @@ const Header = () => {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-white border-t shadow-lg">
-          <div className="container mx-auto px-4 py-4 space-y-4">
+          <div className="max-w-[1160px] mx-auto px-4 py-4 space-y-4">
             <div className="space-y-2">
               <h3 className="font-semibold text-gray-800">Categories</h3>
               {categories.slice(0, 8).map((category) => (
@@ -232,8 +246,14 @@ const Header = () => {
               <Link to="/products?bestseller=true" className="block text-sm font-medium text-gray-700 hover:text-orange transition-colors">
                 Best Sellers
               </Link>
-              <Link to="/help" className="block text-sm text-gray-600 hover:text-orange transition-colors">
-                Help & Support
+              <Link to="/wishlist" className="block text-sm font-medium text-gray-700 hover:text-orange transition-colors">
+                Wishlist ({wishlistState.itemCount})
+              </Link>
+              <Link to="/about" className="block text-sm font-medium text-gray-700 hover:text-orange transition-colors">
+                About Us
+              </Link>
+              <Link to="/contact" className="block text-sm font-medium text-gray-700 hover:text-orange transition-colors">
+                Contact Us
               </Link>
             </div>
           </div>
