@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -22,6 +21,12 @@ import CareersPage from "@/pages/CareersPage";
 import PressPage from "@/pages/PressPage";
 import BlogPage from "@/pages/BlogPage";
 import AffiliateProgram from "@/pages/AffiliateProgram";
+import HelpCenter from "@/pages/HelpCenter";
+import TrackOrderPage from "@/pages/TrackOrderPage";
+import ReturnsPage from "@/pages/ReturnsPage";
+import ShippingPage from "@/pages/ShippingPage";
+import WarrantyPage from "@/pages/WarrantyPage";
+import FAQPage from "@/pages/FAQPage";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -53,6 +58,12 @@ const App = () => (
                     <Route path="/blog" element={<BlogPage />} />
                     <Route path="/affiliate" element={<AffiliateProgram />} />
                     <Route path="/flash-deals" element={<ProductsPage />} />
+                    <Route path="/help" element={<HelpCenter />} />
+                    <Route path="/track-order" element={<TrackOrderPage />} />
+                    <Route path="/returns" element={<ReturnsPage />} />
+                    <Route path="/shipping" element={<ShippingPage />} />
+                    <Route path="/warranty" element={<WarrantyPage />} />
+                    <Route path="/faq" element={<FAQPage />} />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>
