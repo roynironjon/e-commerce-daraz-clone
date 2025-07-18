@@ -27,6 +27,9 @@ import ReturnsPage from "@/pages/ReturnsPage";
 import ShippingPage from "@/pages/ShippingPage";
 import WarrantyPage from "@/pages/WarrantyPage";
 import FAQPage from "@/pages/FAQPage";
+import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
+import TermsOfServicePage from "@/pages/TermsOfServicePage";
+import CookiePolicyPage from "@/pages/CookiePolicyPage";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -64,6 +67,9 @@ const App = () => (
                     <Route path="/shipping" element={<ShippingPage />} />
                     <Route path="/warranty" element={<WarrantyPage />} />
                     <Route path="/faq" element={<FAQPage />} />
+                    <Route path="/privacy" element={<PrivacyPolicyPage />} />
+                    <Route path="/terms" element={<TermsOfServicePage />} />
+                    <Route path="/cookies" element={<CookiePolicyPage />} />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>
