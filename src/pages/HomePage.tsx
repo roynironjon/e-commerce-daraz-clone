@@ -36,19 +36,19 @@ const HomePage = () => {
 
   const testimonials = [
     {
-      name: "Sarah Johnson",
+      name: "Nironjon Roy",
       rating: 5,
       comment: "Amazing shopping experience! Fast delivery and great quality products.",
       avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face"
     },
     {
-      name: "Mike Chen",
+      name: "Arif Hossion",
       rating: 5,
       comment: "Best prices and excellent customer service. Highly recommended!",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face"
     },
     {
-      name: "Emily Davis",
+      name: "Puspa Raj",
       rating: 5,
       comment: "Love the variety of products and the easy return policy.",
       avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face"
@@ -93,7 +93,7 @@ const HomePage = () => {
               <Badge className="bg-white/20 text-white mb-4 backdrop-blur-sm">
                 🔥 Special Launch Offer
               </Badge>
-              <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              <h1 className="text-3xl lg:text-5xl font-bold mb-6 leading-tight">
                 Your Ultimate
                 <span className="block text-yellow-300">Shopping Destination</span>
               </h1>
@@ -191,7 +191,7 @@ const HomePage = () => {
       </section>
 
       {/* 4. Categories Section */}
-      <section className="py-16 bg-white">
+      {/* <section className="py-16 bg-white">
         <div className="max-w-[1160px] mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Shop by Category</h2>
@@ -222,7 +222,55 @@ const HomePage = () => {
             ))}
           </div>
         </div>
+      </section> */}
+
+
+       <section className="py-16 bg-white">
+        <div className="max-w-[1160px] mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Shop by Category</h2>
+            <p className="text-gray-600">Discover products across all categories</p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6">
+            {categoriesWithCounts.slice(0, 16).map((category, index) => (
+              <Link
+                key={category.name}
+                to={`/products?category=${encodeURIComponent(category.name)}`}
+                className="group text-center transform transition-transform duration-300 hover:-translate-y-1.5"
+                style={{ animationDelay: `${index * 0.05}s` }}
+              >
+                <div className="relative overflow-hidden rounded-2xl mb-2 border border-gray-200">
+                  <img
+                    src={
+                      categoryImages[category.name] ||
+                      'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=200&h=200&fit=crop'
+                    }
+                    alt={category.name}
+                    className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+
+                  {/* Category Name */}
+                  <div className="absolute bottom-2 left-2 right-2 text-white text-center">
+                    <h3 className="font-medium text-xs truncate">{category.name}</h3>
+                  </div>
+
+                  {/* Count Badge - Top Right */}
+                  <span className="absolute top-2 right-2 bg-orange-500 text-white text-[10px] px-2 py-0.5 rounded-full font-medium shadow-sm">
+                    {category.count}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
       </section>
+
+
+
 
       {/* 5. Flash Deals Section */}
       {flashDeals.length > 0 && (
@@ -365,6 +413,71 @@ const HomePage = () => {
         </section>
       )}
 
+            {/* 15. All Categories with Products */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-[1160px] mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">All Categories & Products</h2>
+            <p className="text-gray-600">Explore our complete product catalog across all categories</p>
+          </div>
+          
+          {categoriesWithCounts.map((categoryData, categoryIndex) => (
+            <div key={categoryData.name} className="mb-16">
+              {/* Category Header */}
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center">
+                  <div className="relative">
+                    <img
+                      src={categoryImages[categoryData.name] || 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=80&h=80&fit=crop'}
+                      alt={categoryData.name}
+                      className="w-16 h-16 rounded-full object-cover border-4 border-white shadow-lg"
+                    />
+                    <div className="absolute -top-2 -right-2 bg-orange text-white text-xs font-bold px-2 py-1 rounded-full">
+                      {categoryData.count}
+                    </div>
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-2xl font-bold text-gray-900">{categoryData.name}</h3>
+                    <p className="text-gray-600">{categoryData.count} products available</p>
+                  </div>
+                </div>
+                <Link 
+                  to={`/products?category=${encodeURIComponent(categoryData.name)}`}
+                  className="text-orange hover:text-orange-dark font-semibold flex items-center group"
+                >
+                  View All
+                  <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </div>
+
+              {/* Products Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {categoryData.products.slice(0, 8).map((product, productIndex) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    className="animate-fade-in"
+                    style={{ animationDelay: `${productIndex * 0.05}s` }}
+                  />
+                ))}
+              </div>
+
+              {/* Show more products if available */}
+              {categoryData.products.length > 8 && (
+                <div className="text-center mt-6">
+                  <Link to={`/products?category=${encodeURIComponent(categoryData.name)}`}>
+                    <Button variant="outline" className="border-orange text-orange hover:bg-orange hover:text-white">
+                      View All {categoryData.count} {categoryData.name} Products
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* 9. Why Choose Us */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-[1160px] mx-auto px-4">
@@ -417,7 +530,7 @@ const HomePage = () => {
                 Shop Now & Save
               </Button>
             </Link>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-blue px-8">
+            <Button variant="outline" size="lg" className=" bg-gray-500 border-white text-white hover:bg-white hover:text-blue px-8">
               Learn More
             </Button>
           </div>
@@ -540,71 +653,6 @@ const HomePage = () => {
               />
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* 15. All Categories with Products */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-[1160px] mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">All Categories & Products</h2>
-            <p className="text-gray-600">Explore our complete product catalog across all categories</p>
-          </div>
-          
-          {categoriesWithCounts.map((categoryData, categoryIndex) => (
-            <div key={categoryData.name} className="mb-16">
-              {/* Category Header */}
-              <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center">
-                  <div className="relative">
-                    <img
-                      src={categoryImages[categoryData.name] || 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=80&h=80&fit=crop'}
-                      alt={categoryData.name}
-                      className="w-16 h-16 rounded-full object-cover border-4 border-white shadow-lg"
-                    />
-                    <div className="absolute -top-2 -right-2 bg-orange text-white text-xs font-bold px-2 py-1 rounded-full">
-                      {categoryData.count}
-                    </div>
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="text-2xl font-bold text-gray-900">{categoryData.name}</h3>
-                    <p className="text-gray-600">{categoryData.count} products available</p>
-                  </div>
-                </div>
-                <Link 
-                  to={`/products?category=${encodeURIComponent(categoryData.name)}`}
-                  className="text-orange hover:text-orange-dark font-semibold flex items-center group"
-                >
-                  View All
-                  <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-
-              {/* Products Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {categoryData.products.slice(0, 8).map((product, productIndex) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    className="animate-fade-in"
-                    style={{ animationDelay: `${productIndex * 0.05}s` }}
-                  />
-                ))}
-              </div>
-
-              {/* Show more products if available */}
-              {categoryData.products.length > 8 && (
-                <div className="text-center mt-6">
-                  <Link to={`/products?category=${encodeURIComponent(categoryData.name)}`}>
-                    <Button variant="outline" className="border-orange text-orange hover:bg-orange hover:text-white">
-                      View All {categoryData.count} {categoryData.name} Products
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
-                </div>
-              )}
-            </div>
-          ))}
         </div>
       </section>
 
