@@ -8,6 +8,13 @@ import { Badge } from '@/components/ui/badge';
 import CountdownTimer from '@/components/ui/countdown-timer';
 import ProductCard from '@/components/product/ProductCard';
 import { products, categories, categoryImages, getAllCategoriesWithCounts } from '@/data/products';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const HomePage = () => {
   // Product filtering logic
@@ -299,17 +306,24 @@ const HomePage = () => {
               ))}
             </div> */}
 
-            {/* Next 8 Flash Deals in 3 columns */}
+            {/* Flash Deals Slider */}
             {flashDealsNext8.length > 0 && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-                {flashDealsNext8.map((product, index) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    className="animate-fade-in"
-                    style={{ animationDelay: `${(index + 4) * 0.1}s` }}
-                  />
-                ))}
+              <div className="mb-8">
+                <Carousel className="w-full">
+                  <CarouselContent className="-ml-2 md:-ml-4">
+                    {flashDealsNext8.map((product, index) => (
+                      <CarouselItem key={product.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/4">
+                        <ProductCard
+                          product={product}
+                          className="animate-fade-in"
+                          style={{ animationDelay: `${(index + 4) * 0.1}s` }}
+                        />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-2" />
+                  <CarouselNext className="right-2" />
+                </Carousel>
               </div>
             )}
 
@@ -336,16 +350,21 @@ const HomePage = () => {
               </h2>
               <p className="text-gray-600">Save big on these amazing deals</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {discountProducts.map((product, index) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  className="animate-fade-in"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                />
-              ))}
-            </div>
+            <Carousel className="w-full">
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {discountProducts.map((product, index) => (
+                  <CarouselItem key={product.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/4">
+                    <ProductCard
+                      product={product}
+                      className="animate-fade-in"
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-2" />
+              <CarouselNext className="right-2" />
+            </Carousel>
           </div>
         </section>
       )}
@@ -358,16 +377,21 @@ const HomePage = () => {
               <h2 className="text-3xl font-bold mb-4">Featured Products</h2>
               <p className="text-gray-600">Hand-picked products just for you</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {featuredProducts.map((product, index) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  className="animate-fade-in"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                />
-              ))}
-            </div>
+            <Carousel className="w-full">
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {featuredProducts.map((product, index) => (
+                  <CarouselItem key={product.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/4">
+                    <ProductCard
+                      product={product}
+                      className="animate-fade-in"
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-2" />
+              <CarouselNext className="right-2" />
+            </Carousel>
             <div className="text-center mt-8">
               <Link to="/products?featured=true">
                 <Button variant="outline" className="border-orange text-orange hover:bg-orange hover:text-white">
@@ -391,16 +415,21 @@ const HomePage = () => {
               </h2>
               <p className="text-gray-600">Most popular products loved by customers</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {bestSellers.map((product, index) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  className="animate-fade-in"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                />
-              ))}
-            </div>
+            <Carousel className="w-full">
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {bestSellers.map((product, index) => (
+                  <CarouselItem key={product.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/4">
+                    <ProductCard
+                      product={product}
+                      className="animate-fade-in"
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-2" />
+              <CarouselNext className="right-2" />
+            </Carousel>
             <div className="text-center mt-8">
               <Link to="/products?bestseller=true">
                 <Button variant="outline" className="border-green text-green hover:bg-green hover:text-white">
@@ -450,17 +479,22 @@ const HomePage = () => {
                 </Link>
               </div>
 
-              {/* Products Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {categoryData.products.slice(0, 8).map((product, productIndex) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    className="animate-fade-in"
-                    style={{ animationDelay: `${productIndex * 0.05}s` }}
-                  />
-                ))}
-              </div>
+              {/* Products Slider */}
+              <Carousel className="w-full">
+                <CarouselContent className="-ml-2 md:-ml-4">
+                  {categoryData.products.slice(0, 8).map((product, productIndex) => (
+                    <CarouselItem key={product.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/4">
+                      <ProductCard
+                        product={product}
+                        className="animate-fade-in"
+                        style={{ animationDelay: `${productIndex * 0.05}s` }}
+                      />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-2" />
+                <CarouselNext className="right-2" />
+              </Carousel>
 
               {/* Show more products if available */}
               {categoryData.products.length > 8 && (
