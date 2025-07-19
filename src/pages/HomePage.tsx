@@ -315,7 +315,7 @@ const HomePage = () => {
 
             <div className="text-center">
               <Link to="/flash-deals">
-                <Button variant="outline" className="border-red text-red hover:bg-red hover:text-white">
+                <Button variant="outline" className="bg-orange border-red text-red hover:bg-red hover:text-white">
                   View All Flash Deals
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -324,6 +324,32 @@ const HomePage = () => {
           </div>
         </section>
       )}
+
+      {/* discount image show sectoin */}
+      <section className="py-16 bg-gray-400">
+        <div className="max-w-[1160px] mx-auto px-4">
+          <div className="flex flex-col md:flex-row gap-4 items-center md:items-stretch h-[400px]">
+            
+            {/* Left Image */}
+            <div className="w-full md:w-1/2 h-full">
+              <img
+                src="/homeimages/discount-1.jpg"
+                alt="Discounted Product"
+                className="w-full h-full object-cover rounded-xl"
+              />
+            </div>
+
+            {/* Right Content */}
+            <div className="w-full md:w-1/2 h-full bg-white rounded-xl p-6 flex flex-col justify-center text-center">
+              <h2 className="text-2xl font-bold text-gray-800 mb-2 text-center">🔥 Limited Time Offer!</h2>
+              <p className="text-lg text-gray-600 mb-4 text-center">Get 30% OFF on our best-selling product. Don’t miss the deal!</p>
+              <p className="text-xl font-semibold text-red-600 mb-6 text-center">Now only ৳699 <span className="line-through text-gray-500 text-base ml-2 text-center">৳999</span></p>
+              <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg w-max transition duration-300 text-center mx-auto">Shop Now</button>
+            </div>
+
+          </div>
+        </div>
+      </section>
 
       {/* 6. Discount Products Section */}
       {discountProducts.length > 0 && (
@@ -349,6 +375,30 @@ const HomePage = () => {
           </div>
         </section>
       )}
+
+      {/* 17. Product Image Gallery Section */}
+      <section className="py-16 bg-gray-100">
+        <div className="max-w-[1160px] mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Explore Product Highlights</h2>
+            <p className="text-gray-600">A quick glance at top picks from our collections</p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[featuredProducts[0], bestSellers[0], discountProducts[0], flashDealsNext8[0], featuredProducts[1], bestSellers[1], discountProducts[1], flashDealsNext8[1]]
+              .filter(Boolean)
+              .map((product, index) => (
+                <div key={product.id} className="rounded-xl overflow-hidden shadow-sm bg-white hover:shadow-lg transition-all duration-300">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+              ))}
+          </div>
+        </div>
+      </section>
 
       {/* 7. Featured Products */}
       {featuredProducts.length > 0 && (
@@ -380,6 +430,39 @@ const HomePage = () => {
         </section>
       )}
 
+      {/* <section id="top-rated-products" className="py-16 bg-white">
+        <div className="max-w-[1160px] mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h2 className="text-3xl font-bold mb-6">Top Rated Products</h2>
+            <div className="grid grid-cols-2 gap-6">
+              {[0, 1, 2, 3].map((index) => {
+                const product = topRatedProducts[index];
+                return product ? (
+                  <div key={product.id} className="bg-gray-100 p-4 rounded-xl hover:shadow-md transition">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-32 object-cover rounded-md mb-2"
+                    />
+                    <h3 className="text-md font-semibold">{product.name}</h3>
+                    <p className="text-sm text-gray-600">${product.price}</p>
+                  </div>
+                ) : null;
+              })}
+            </div>
+          </div>
+
+          <div className="hidden md:block">
+            <img
+              src="/images/top-rated-banner.jpg"
+              alt="Top Rated Banner"
+              className="rounded-xl shadow-lg"
+            />
+          </div>
+        </div>
+      </section> */}
+
+
       {/* 8. Best Sellers */}
       {bestSellers.length > 0 && (
         <section className="py-16 bg-white">
@@ -403,7 +486,7 @@ const HomePage = () => {
             </div>
             <div className="text-center mt-8">
               <Link to="/products?bestseller=true">
-                <Button variant="outline" className="border-green text-green hover:bg-green hover:text-white">
+                <Button variant="outline" className="border-orange bg-orange text-green hover:bg-green hover:text-white hover:border-green">
                   View All Best Sellers
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -413,8 +496,8 @@ const HomePage = () => {
         </section>
       )}
 
-            {/* 15. All Categories with Products */}
-      <section className="py-16 bg-gray-50">
+      {/* 15. All Categories with Products */}
+      {/* <section className="py-16 bg-gray-50">
         <div className="max-w-[1160px] mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">All Categories & Products</h2>
@@ -423,7 +506,6 @@ const HomePage = () => {
           
           {categoriesWithCounts.map((categoryData, categoryIndex) => (
             <div key={categoryData.name} className="mb-16">
-              {/* Category Header */}
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center">
                   <div className="relative">
@@ -449,8 +531,6 @@ const HomePage = () => {
                   <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
-
-              {/* Products Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {categoryData.products.slice(0, 8).map((product, productIndex) => (
                   <ProductCard
@@ -462,7 +542,6 @@ const HomePage = () => {
                 ))}
               </div>
 
-              {/* Show more products if available */}
               {categoryData.products.length > 8 && (
                 <div className="text-center mt-6">
                   <Link to={`/products?category=${encodeURIComponent(categoryData.name)}`}>
@@ -476,7 +555,7 @@ const HomePage = () => {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* 9. Why Choose Us */}
       <section className="py-16 bg-white">
