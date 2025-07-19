@@ -39,19 +39,19 @@ const HomePage = () => {
       name: "Nironjon Roy",
       rating: 5,
       comment: "Amazing shopping experience! Fast delivery and great quality products.",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face"
+      avatar: "/homeimages/roy.jpg"
     },
     {
       name: "Arif Hossion",
       rating: 5,
       comment: "Best prices and excellent customer service. Highly recommended!",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face"
+      avatar: "/homeimages/roy.jpg"
     },
     {
       name: "Puspa Raj",
       rating: 5,
       comment: "Love the variety of products and the easy return policy.",
-      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face"
+      avatar: "/homeimages/roy.jpg"
     }
   ];
 
@@ -117,7 +117,7 @@ const HomePage = () => {
                   </Button>
                 </Link>
               </div>
-              
+
               {/* Stats */}
               <div className="flex items-center space-x-8 mt-12">
                 <div className="text-center">
@@ -134,7 +134,7 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="relative animate-slide-up">
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
                 <img
@@ -150,6 +150,36 @@ const HomePage = () => {
             </div>
           </div>
         </div>
+
+       {/* Sliding News Text Ticker */}
+        <div className="absolute bottom-0 left-0 w-full bg-yellow-400 text-black py-2 overflow-hidden">
+          <div className="flex whitespace-nowrap animate-marquee text-sm font-semibold px-4">
+            <span className="mx-8">
+              📰 Mega Sale is Live! | 📦 Free Shipping on orders over $50 | 💳 Secure Payments | 🛒 New Products Every Day | 🎁 Subscribe for Special Offers!
+            </span>
+            <span className="mx-8">
+              📰 Mega Sale is Live! | 📦 Free Shipping on orders over $50 | 💳 Secure Payments | 🛒 New Products Every Day | 🎁 Subscribe for Special Offers!
+            </span>
+            <span className="mx-8">
+              📰 Mega Sale is Live! | 📦 Free Shipping on orders over $50 | 💳 Secure Payments | 🛒 New Products Every Day | 🎁 Subscribe for Special Offers!
+            </span>
+            <span className="mx-8">
+              📰 Mega Sale is Live! | 📦 Free Shipping on orders over $50 | 💳 Secure Payments | 🛒 New Products Every Day | 🎁 Subscribe for Special Offers!
+            </span>
+          </div>
+        </div>
+
+        <style jsx>{`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+
+          .animate-marquee {
+            display: inline-flex;
+            animation: marquee 20s linear infinite;
+          }
+        `}</style>
       </section>
 
       {/* 2. Trust Indicators */}
@@ -269,9 +299,6 @@ const HomePage = () => {
         </div>
       </section>
 
-
-
-
       {/* 5. Flash Deals Section */}
       {flashDeals.length > 0 && (
         <section className="py-16 bg-gray-50">
@@ -326,7 +353,7 @@ const HomePage = () => {
       )}
 
       {/* discount image show sectoin */}
-      <section className="py-16 bg-gray-400">
+      <section className="py-16 bg-gray-300">
         <div className="max-w-[1160px] mx-auto px-4">
           <div className="flex flex-col md:flex-row gap-4 items-center md:items-stretch h-[400px]">
             
@@ -344,7 +371,7 @@ const HomePage = () => {
               <h2 className="text-2xl font-bold text-gray-800 mb-2 text-center">🔥 Limited Time Offer!</h2>
               <p className="text-lg text-gray-600 mb-4 text-center">Get 30% OFF on our best-selling product. Don’t miss the deal!</p>
               <p className="text-xl font-semibold text-red-600 mb-6 text-center">Now only ৳699 <span className="line-through text-gray-500 text-base ml-2 text-center">৳999</span></p>
-              <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg w-max transition duration-300 text-center mx-auto">Shop Now</button>
+              <button className="bg-orange hover:bg-red-700 text-white px-6 py-2 rounded-lg w-max transition duration-300 text-center mx-auto">Shop Now</button>
             </div>
 
           </div>
@@ -377,7 +404,7 @@ const HomePage = () => {
       )}
 
       {/* 17. Product Image Gallery Section */}
-      <section className="py-16 bg-gray-100">
+      <section className="py-16 bg-gray-300">
         <div className="max-w-[1160px] mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Explore Product Highlights</h2>
@@ -430,42 +457,55 @@ const HomePage = () => {
         </section>
       )}
 
-      {/* <section id="top-rated-products" className="py-16 bg-white">
-        <div className="max-w-[1160px] mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+      <section id="best-selling-products" className="py-16 bg-gray-300 text-black">
+        <div className="max-w-[1160px] mx-auto px-4 grid md:grid-cols-2 gap-10 items-start">
+          
+          {/* Left: Best Selling Products */}
           <div>
-            <h2 className="text-3xl font-bold mb-6">Top Rated Products</h2>
+            <h2 className="text-3xl font-bold mb-6">Best Selling Products</h2>
             <div className="grid grid-cols-2 gap-6">
-              {[0, 1, 2, 3].map((index) => {
-                const product = topRatedProducts[index];
-                return product ? (
-                  <div key={product.id} className="bg-gray-100 p-4 rounded-xl hover:shadow-md transition">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-32 object-cover rounded-md mb-2"
-                    />
-                    <h3 className="text-md font-semibold">{product.name}</h3>
-                    <p className="text-sm text-gray-600">${product.price}</p>
-                  </div>
-                ) : null;
-              })}
+              {bestSellers.slice(0, 4).map((product) => (
+                <div key={product.id} className="bg-white p-4 rounded-xl hover:shadow-lg transition">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-32 object-cover rounded-md mb-2"
+                  />
+                  <h3 className="text-md font-semibold text-black">{product.name}</h3>
+                  <p className="text-sm text-black">${product.price}</p>
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="hidden md:block">
-            <img
-              src="/images/top-rated-banner.jpg"
-              alt="Top Rated Banner"
-              className="rounded-xl shadow-lg"
-            />
+          {/* Right: Discounted Products */}
+          <div>
+            <h2 className="text-3xl font-bold mb-6">Discount Products</h2>
+            <div className="grid grid-cols-2 gap-6">
+              {discountProducts.slice(0, 4).map((product) => (
+                <div key={product.id} className="bg-white p-4 rounded-xl hover:shadow-lg transition">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-32 object-cover rounded-md mb-2"
+                  />
+                  <h3 className="text-md font-semibold text-black">{product.name}</h3>
+                  <div className="flex items-center gap-3">
+                    <div className="text-sm text-gray-500 line-through">${product.originalPrice}</div>
+                    <p className="text-sm text-red-600 font-semibold">${product.price}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
+
         </div>
-      </section> */}
+      </section>
 
 
       {/* 8. Best Sellers */}
       {bestSellers.length > 0 && (
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-gray-50">
           <div className="max-w-[1160px] mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 flex items-center justify-center">
