@@ -42,7 +42,7 @@ const App = () => (
           <CartProvider>
             <Toaster />
             <Sonner />
-            <BrowserRouter>
+            <BrowserRouter basename="/e-commerce-daraz-clone">
               <div className="min-h-screen flex flex-col">
                 <Header />
                 <main className="flex-1">
